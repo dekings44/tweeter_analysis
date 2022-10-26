@@ -25,6 +25,11 @@ import inspect
 from PIL import Image #to embed image
 import auth
 
+csvFile = open('result.csv', 'a')
+
+#Use csv writer
+csvWriter = csv.writer(csvFile)
+
 
 
 client = tweepy.Client(auth.bearer_token)
@@ -35,4 +40,8 @@ response = client.search_recent_tweets(query=query, max_results = 100)
 
 
 for tweet in response.data:
-    print(tweet)
+
+    csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
+    print(tweet.text)
+
+csvFile.close()
