@@ -27,33 +27,12 @@ import auth
 
 
 
-
-# auth = tweepy.OAuthHandler(auth.access_key, auth.access_secret_key)
-# auth.set_access_token(auth.access_token, auth.access_token_secret)
-
 client = tweepy.Client(auth.bearer_token)
-
-# api = tweepy.API(auth, wait_on_rate_limit=True)
 
 query = "covid -is:retweet"
 
 response = client.search_recent_tweets(query=query, max_results = 100)
 
-#tweets = client.get_users_tweets(id="RealDekings", tweet_fields=['context_annotations','created_at','geo'])
 
 for tweet in response.data:
-    print(tweet.id)
-
-
-
-# tweets = api.user_timeline(screen_name = "@RealDekings",
-#                             #Get number of tweets
-#                             count = 200,
-#                             #Include retweets
-#                             include_rts = False,
-#                             #Get all the full text
-#                             tweet_mode = 'extended')
-
-# print(tweets)
-
-# auth = tweepy.OAuth1UserHandler(auth.access_key, auth.access_secret_key, auth.access_token, auth.access_Token_secret)
+    print(tweet)
